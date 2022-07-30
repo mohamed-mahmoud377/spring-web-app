@@ -7,6 +7,7 @@ import com.example.demo.shared.Utils;
 import com.example.demo.shared.dto.UserDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     Utils utils;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public UserDto createUser(UserDto user) {
 
@@ -25,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
         BeanUtils.copyProperties(user,userEntity);
 
-        userEntity.setEncryptedPassword("test");
+        userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         String publishUserId = utils.generateUserId(30);
         userEntity.setUserId(publishUserId);
