@@ -2,8 +2,9 @@ package com.example.demo.service;
 
 import com.example.demo.shared.dto.UserDto;
 import org.apache.catalina.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+public interface UserService  extends UserDetailsService {
 
     UserDto createUser(UserDto user);
 }
