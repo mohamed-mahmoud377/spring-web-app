@@ -6,6 +6,7 @@ public class UserDetailsRequestModel {
     private String email;
     private String password;
 
+
     public String getFirstName() {
         return firstName;
     }

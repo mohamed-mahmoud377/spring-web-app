@@ -6,9 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity(name = "users")
-public class UserEntity {
+public class UserEntity implements Serializable {
     private static final long serialVersionUID = 6835192601898364280L;
     @Id
     @GeneratedValue
@@ -24,7 +25,7 @@ public class UserEntity {
     private String lastName;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String email;
     @Column(nullable = false)
     private String encryptedPassword;
